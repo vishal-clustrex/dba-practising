@@ -1,8 +1,26 @@
 [
 	{
-		"value" : "hello"
+		"value" : "hello",
+		"skipIt": false
 	},
 	{
-		"value" : "world"
+		"value" : "world",
+		"skipIt": false
+	},
+	{
+		"value" : "hello1",
+		"skipIt": true
+	},
+	{
+		"value" : "world1",
+		"skipIt": true
+	},
+	{
+		"value" : "hello2",
+		"skipIt": false
+	},
+	{
+		"value" : "world2",
+		"skipIt": false
 	}
 ]

@@ -1,5 +1,7 @@
 package com.home.springbatch.separatefiles;
 
+import java.time.Instant;
+
 import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -28,7 +30,10 @@ public class SecondApplication {
 	public static void main(String[] args) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, InterruptedException {
 		ConfigurableApplicationContext context = SpringApplication.run(SecondApplication.class, args);
 		JobParameters jobParameters = new JobParametersBuilder()
-				.addParameter("output", new JobParameter("My first spring boot app."))
+				.addParameter("inputPath", new JobParameter("E:\\SW Outputs\\LearningWorkspace\\practising\\spring-batch\\src\\main\\resources\\files\\input.json"))
+				.addParameter("outputPath", new JobParameter("output/output.json"))
+				.addParameter("output", new JobParameter("My new first spring boot app."))
+				.addParameter("dummy", new JobParameter("" + Instant.now().getNano()))
 				.toJobParameters();
 		
 		TriggerJobService triggerJobService = context.getBean(TriggerJobService.class);

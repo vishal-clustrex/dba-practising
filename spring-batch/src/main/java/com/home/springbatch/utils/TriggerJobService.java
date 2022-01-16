@@ -9,7 +9,7 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.stereotype.Component;
 
-import com.home.springbatch.helloworld.jobconfig.HelloJob;
+import com.home.springbatch.helloworld.jobconfig.FileJob;
 
 @Component
 public class TriggerJobService {
@@ -18,7 +18,7 @@ public class TriggerJobService {
 	private final Job job;
 	
 	public TriggerJobService(JobLauncher jobLauncher,
-			@HelloJob Job job) {
+				@FileJob Job job) {
 		this.jobLauncher = jobLauncher;
 		this.job = job;
 	}

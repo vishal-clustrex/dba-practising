@@ -17,8 +17,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
+import com.home.springbatch.helloworld.jobconfig.FileJob;
 import com.home.springbatch.separatefiles.dto.InputData;
 import com.home.springbatch.separatefiles.dto.OutputData;
+import com.home.springbatch.separatefiles.exception.CustomException;
 import com.home.springbatch.separatefiles.processor.UpperCaseProcessor;
 
 @Configuration
@@ -41,6 +43,7 @@ public class BatchConfig {
 	}
 	
 	@Bean
+	@FileJob
 	public Job job() {
 		return jobBuilderFactory.get("upperCaseJob")
 					.start(step())
@@ -54,6 +57,9 @@ public class BatchConfig {
 																				.chunk(1);
 		return simpleStepBuilder.reader(this.itemReader)
 				.processor(this.upperCaseProcessor)
+				.faultTolerant()
+				.skip(CustomException.class)
+				.skipLimit(1)
 				.writer(writer(null))
 				.build();
 	}
